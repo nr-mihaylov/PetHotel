@@ -1,7 +1,4 @@
-# PetHotel
-Mandatory assignment for the backend course in web development
-
-Pet Paradise Hotel – mandatory assignment part 1
+# Pet Paradise Hotel – mandatory assignment
 Animal hotel "Pets Paradise hotel" specializes in offering holidays to many kinds of pets, such as dog, cat,
 rabbit, guinea pig, budgie, chinchilla, hamster, snake, and spider.
 Prices per. day are established at:
