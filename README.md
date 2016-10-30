@@ -1,17 +1,18 @@
 # Pet Paradise Hotel – mandatory assignment
+
 Animal hotel "Pets Paradise hotel" specializes in offering holidays to many kinds of pets, such as dog, cat,
 rabbit, guinea pig, budgie, chinchilla, hamster, snake, and spider.
 Prices per. day are established at:
-Chinchilla 80,00
-Snake 120,00
-Hamster 80,00
-Dog 180,00
-Cat 140,00
-Rabit 80,00
-Iguanas 150,00
-Guinea pig 75,00
-Canary 60,00
-Bird spider 90,00
+- Chinchilla 80,00
+- Snake 120,00
+- Hamster 80,00
+- Dog 180,00
+- Cat 140,00
+- Rabit 80,00
+- Iguanas 150,00
+- Guinea pig 75,00
+- Canary 60,00
+- Bird spider 90,00
 The web application must present Pet Paradise Hotel for customers and support online reservation. The
 reservation system must keep track of customers and their lodged animals. Upon collection of pets, it must
 be possible to print an invoice. Moreover, it should be possible on daily basis to generate a list with name,
