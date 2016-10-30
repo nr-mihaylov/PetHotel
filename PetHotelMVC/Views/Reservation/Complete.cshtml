@@ -1,0 +1,16 @@
+﻿<section class="container__content">
+    
+    <h1>@ViewBag.title</h1>
+    <hr />
+
+    <p>@ViewBag.text</p>
+
+    @if (ViewBag.code != null)
+    {
+        <p>Reservation code:</p>
+        <p>
+            <strong>@ViewBag.code</strong>
+        </p>
+    }
+
+</section>

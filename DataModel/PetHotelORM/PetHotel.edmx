@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PetHotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="zipcode" Type="int" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="initials" Type="varchar" MaxLength="20" />
+          <Property Name="phone" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="isContact" Type="bit" />
+        </EntityType>
+        <EntityType Name="reservation">
+          <Key>
+            <PropertyRef Name="reservationID" />
+          </Key>
+          <Property Name="reservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerID" Type="int" Nullable="false" />
+          <Property Name="employeeID" Type="int" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="petName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="birthday" Type="datetime" />
+          <Property Name="speciesID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="species">
+          <Key>
+            <PropertyRef Name="speciesID" />
+          </Key>
+          <Property Name="speciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="speciesName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetHotel.dbo.vContactList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vContactList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="401" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetHotel.dbo.vEmployeeList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vEmployeeList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="401" Nullable="false" />
+          <Property Name="initials" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetHotel.dbo.vInvoiceList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vInvoiceList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="petName" />
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="endDate" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="401" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="200" />
+          <Property Name="city" Type="varchar" MaxLength="213" Nullable="false" />
+          <Property Name="speciesName" Type="varchar" MaxLength="200" />
+          <Property Name="petName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="employee" Type="varchar" MaxLength="401" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="days" Type="int" />
+          <Property Name="price" Type="int" />
+          <Property Name="total" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetHotel.dbo.vPetList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPetList">
+          <Key>
+            <PropertyRef Name="petName" />
+            <PropertyRef Name="speciesID" />
+          </Key>
+          <Property Name="petName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="birthday" Type="datetime" />
+          <Property Name="speciesID" Type="int" Nullable="false" />
+          <Property Name="age" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetHotel.dbo.vPriceList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPriceList">
+          <Key>
+            <PropertyRef Name="speciesName" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="speciesName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="reservationCustomerFK">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reservationEmployeeFK">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reservationSpeciesFK">
+          <End Role="species" Type="Self.species" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="species">
+              <PropertyRef Name="speciesID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="speciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetHotelModelStoreContainer">
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reservation" EntityType="Self.reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="species" EntityType="Self.species" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vContactList" EntityType="Self.vContactList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vContactList].[name] AS [name], 
+    [vContactList].[phone] AS [phone], 
+    [vContactList].[email] AS [email]
+    FROM [dbo].[vContactList] AS [vContactList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vEmployeeList" EntityType="Self.vEmployeeList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vEmployeeList].[name] AS [name], 
+    [vEmployeeList].[initials] AS [initials], 
+    [vEmployeeList].[email] AS [email], 
+    [vEmployeeList].[phone] AS [phone]
+    FROM [dbo].[vEmployeeList] AS [vEmployeeList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vInvoiceList" EntityType="Self.vInvoiceList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vInvoiceList].[name] AS [name], 
+    [vInvoiceList].[address] AS [address], 
+    [vInvoiceList].[city] AS [city], 
+    [vInvoiceList].[speciesName] AS [speciesName], 
+    [vInvoiceList].[petName] AS [petName], 
+    [vInvoiceList].[employee] AS [employee], 
+    [vInvoiceList].[startDate] AS [startDate], 
+    [vInvoiceList].[endDate] AS [endDate], 
+    [vInvoiceList].[days] AS [days], 
+    [vInvoiceList].[price] AS [price], 
+    [vInvoiceList].[total] AS [total]
+    FROM [dbo].[vInvoiceList] AS [vInvoiceList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPetList" EntityType="Self.vPetList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPetList].[petName] AS [petName], 
+    [vPetList].[birthday] AS [birthday], 
+    [vPetList].[speciesID] AS [speciesID], 
+    [vPetList].[age] AS [age]
+    FROM [dbo].[vPetList] AS [vPetList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPriceList" EntityType="Self.vPriceList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPriceList].[speciesName] AS [speciesName], 
+    [vPriceList].[price] AS [price]
+    FROM [dbo].[vPriceList] AS [vPriceList]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="reservationCustomerFK" Association="Self.reservationCustomerFK">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="reservationEmployeeFK" Association="Self.reservationEmployeeFK">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="reservationSpeciesFK" Association="Self.reservationSpeciesFK">
+            <End Role="species" EntitySet="species" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetHotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="Int32" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="reservation" Relationship="Self.reservationCustomerFK" FromRole="customer" ToRole="reservation" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="initials" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isContact" Type="Boolean" />
+          <NavigationProperty Name="reservation" Relationship="Self.reservationEmployeeFK" FromRole="employee" ToRole="reservation" />
+        </EntityType>
+        <EntityType Name="reservation">
+          <Key>
+            <PropertyRef Name="reservationID" />
+          </Key>
+          <Property Name="reservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerID" Type="Int32" Nullable="false" />
+          <Property Name="employeeID" Type="Int32" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="petName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Precision="3" />
+          <Property Name="speciesID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.reservationCustomerFK" FromRole="reservation" ToRole="customer" />
+          <NavigationProperty Name="employee" Relationship="Self.reservationEmployeeFK" FromRole="reservation" ToRole="employee" />
+          <NavigationProperty Name="species" Relationship="Self.reservationSpeciesFK" FromRole="reservation" ToRole="species" />
+        </EntityType>
+        <EntityType Name="species">
+          <Key>
+            <PropertyRef Name="speciesID" />
+          </Key>
+          <Property Name="speciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speciesName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="reservation" Relationship="Self.reservationSpeciesFK" FromRole="species" ToRole="reservation" />
+        </EntityType>
+        <EntityType Name="vContactList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="401" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vEmployeeList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="401" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="initials" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vInvoiceList">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="petName" />
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="endDate" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="401" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="213" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="speciesName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="petName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employee" Type="String" MaxLength="401" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="days" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vPetList">
+          <Key>
+            <PropertyRef Name="petName" />
+            <PropertyRef Name="speciesID" />
+          </Key>
+          <Property Name="petName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Precision="3" />
+          <Property Name="speciesID" Type="Int32" Nullable="false" />
+          <Property Name="age" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vPriceList">
+          <Key>
+            <PropertyRef Name="speciesName" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="speciesName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="reservationCustomerFK">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reservationEmployeeFK">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reservationSpeciesFK">
+          <End Role="species" Type="Self.species" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="species">
+              <PropertyRef Name="speciesID" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="speciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PTContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customer" EntityType="Self.customer" />
+          <EntitySet Name="employee" EntityType="Self.employee" />
+          <EntitySet Name="reservation" EntityType="Self.reservation" />
+          <EntitySet Name="species" EntityType="Self.species" />
+          <EntitySet Name="vContactList" EntityType="Self.vContactList" />
+          <EntitySet Name="vEmployeeList" EntityType="Self.vEmployeeList" />
+          <EntitySet Name="vInvoiceList" EntityType="Self.vInvoiceList" />
+          <EntitySet Name="vPetList" EntityType="Self.vPetList" />
+          <EntitySet Name="vPriceList" EntityType="Self.vPriceList" />
+          <AssociationSet Name="reservationCustomerFK" Association="Self.reservationCustomerFK">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="reservationEmployeeFK" Association="Self.reservationEmployeeFK">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="reservationSpeciesFK" Association="Self.reservationSpeciesFK">
+            <End Role="species" EntitySet="species" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetHotelModelStoreContainer" CdmEntityContainer="PTContext">
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="PetHotelModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="PetHotelModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="initials" ColumnName="initials" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="isContact" ColumnName="isContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservation">
+            <EntityTypeMapping TypeName="PetHotelModel.reservation">
+              <MappingFragment StoreEntitySet="reservation">
+                <ScalarProperty Name="reservationID" ColumnName="reservationID" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="petName" ColumnName="petName" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="speciesID" ColumnName="speciesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="species">
+            <EntityTypeMapping TypeName="PetHotelModel.species">
+              <MappingFragment StoreEntitySet="species">
+                <ScalarProperty Name="speciesID" ColumnName="speciesID" />
+                <ScalarProperty Name="speciesName" ColumnName="speciesName" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vContactList">
+            <EntityTypeMapping TypeName="PetHotelModel.vContactList">
+              <MappingFragment StoreEntitySet="vContactList">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vEmployeeList">
+            <EntityTypeMapping TypeName="PetHotelModel.vEmployeeList">
+              <MappingFragment StoreEntitySet="vEmployeeList">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="initials" ColumnName="initials" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vInvoiceList">
+            <EntityTypeMapping TypeName="PetHotelModel.vInvoiceList">
+              <MappingFragment StoreEntitySet="vInvoiceList">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="speciesName" ColumnName="speciesName" />
+                <ScalarProperty Name="petName" ColumnName="petName" />
+                <ScalarProperty Name="employee" ColumnName="employee" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="days" ColumnName="days" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPetList">
+            <EntityTypeMapping TypeName="PetHotelModel.vPetList">
+              <MappingFragment StoreEntitySet="vPetList">
+                <ScalarProperty Name="petName" ColumnName="petName" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="speciesID" ColumnName="speciesID" />
+                <ScalarProperty Name="age" ColumnName="age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPriceList">
+            <EntityTypeMapping TypeName="PetHotelModel.vPriceList">
+              <MappingFragment StoreEntitySet="vPriceList">
+                <ScalarProperty Name="speciesName" ColumnName="speciesName" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

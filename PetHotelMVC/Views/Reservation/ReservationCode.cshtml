@@ -1,0 +1,17 @@
+﻿
+<section class="container__content">
+
+    <h1>Edit reservation</h1>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        <fieldset class="form-group">
+            <label for="code">Reservation code </label>
+            <input id="code" type="text" name="code" class="form-control" />
+        </fieldset>
+
+        <input type="submit" value="Edit Reservation" class="btn btn-primary" />
+    }
+
+</section>

@@ -1,0 +1,87 @@
+﻿@boxColor: #E6E6E6;
+@boxColorInverted: #373a3c;
+@textColor: #373a3c;
+@textColorInverted: #E6E6E6;
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Lato;
+    font-weight: 700;
+    margin: 0 !important;
+}
+
+p, div {
+    font-family: Lato;
+    font-weight: 400;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.table { 
+    border: 1px solid #eceeef;
+}
+
+hr {
+    margin-top: 5px !important;
+    margin-bottom: 25px !important;
+}
+
+.form-group label {
+    font-weight: 900;
+}
+
+.field-validation-error {
+    color: red;
+    font-size: .8rem;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+
+    .navbar-nav .nav-item {
+        float: none !important;
+    }
+
+    .navbar-nav .nav-item+.nav-item {
+        margin-left: 0 !important;
+    }
+
+    .navbar-brand {
+        float: none !important;
+    }
+
+    .navbar-toggler::after {
+        display: table;
+        clear: both;
+        content: "";
+    }
+
+}
+
+.container__content a, .container__content a:hover {
+    color: @textColorInverted;
+    text-decoration: none;
+}
+
+.container {
+    padding: 100px 0;
+    min-height: 100vh;
+}
+
+.container__content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.menu-item {
+    display: block;
+    padding: 20px;
+    margin: 20px 0;
+
+    color: @textColorInverted;
+    background-color: @boxColorInverted;
+    text-align: center;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,54 @@
+﻿@using DataModel.PetHotelORM
+@model ICollection<reservation>
+
+<section>
+
+    <h1>Reservation list</h1>
+    <hr />
+
+    <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Zip code</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Pet name</th>
+                <th>Species</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (reservation r in Model.ToArray<reservation>())
+            {
+
+                <tr>
+                    <td>@r.customer.firstName</td>
+                    <td>@r.customer.lastName</td>
+                    <td>@r.customer.address</td>
+                    <td>@r.customer.city</td>
+                    <td>@r.customer.phone</td>
+                    <td>@r.customer.zipcode</td>
+                    <td>@r.startDate</td>
+                    <td>@r.endDate</td>
+                    <td>@r.petName</td>
+                    <td>@r.species.speciesName</td>
+
+                    <td>
+                        @using (Html.BeginForm("EditReservation", "ControlPanel", FormMethod.Post))
+                        {
+                            @Html.Hidden("reservationID", Convert.ToString(r.reservationID))
+                            <input type="submit" value="Edit" class="btn btn-warning" />
+                        }
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</section>

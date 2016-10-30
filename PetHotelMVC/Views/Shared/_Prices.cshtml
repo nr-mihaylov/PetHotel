@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Prices";
+}
+
+@using DataModel.PetHotelORM
+@model ICollection<vPriceList>
+
+<section class="container__content">
+
+    <h1>Price list</h1>
+    <hr />
+
+    <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Species</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (vPriceList item in Model.ToArray<vPriceList>())
+            {
+                <tr>
+                    <td>@item.speciesName</td>
+                    <td>@item.price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+

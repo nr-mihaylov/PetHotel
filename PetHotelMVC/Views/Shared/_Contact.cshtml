@@ -1,0 +1,28 @@
+﻿@using DataModel.PetHotelORM
+@model ICollection<vContactList>
+
+<section class="container__content contact">
+
+    <h1>Contact information</h1>
+    <hr />
+
+    <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (vContactList item in Model.ToArray<vContactList>())
+            {
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.phone</td>
+                    <td>@item.email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,30 @@
+﻿@model DataModel.PetHotelORM.pet
+
+@using (Html.BeginForm())
+{
+
+<div>
+    @Html.LabelFor(x => x.name)
+    @Html.EditorFor(x => x.name)
+    @Html.ValidationMessageFor(x => x.name)
+</div>
+
+<div>
+    @Html.LabelFor(x => x.species.speciesName)
+    @Html.DropDownListFor(x => x.species.speciesName, new SelectList(ViewBag.speciesList, "speciesName", "speciesName"))
+    @Html.ValidationMessageFor(x => x.species.speciesName)
+    
+</div>
+
+<input type="submit" value="Add Pet" />
+
+}
+
+@{
+
+    if(ViewBag.duplicatePet != null)
+    {
+        <p>@ViewBag.duplicatePet.name is duplicate.</p>
+    }
+
+}

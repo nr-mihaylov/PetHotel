@@ -1,0 +1,82 @@
+﻿
+
+@{
+    ViewBag.Title = "Book";
+}
+
+@model DataModel.PetHotelORM.reservation
+
+<section class="container__content">
+
+    <h1>Book a room</h1>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(x => x.reservationID)
+        @Html.HiddenFor(x => x.customerID)
+
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.firstName)
+            @Html.EditorFor(x => x.customer.firstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.firstName)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.lastName)
+            @Html.EditorFor(x => x.customer.lastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.lastName)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.address)
+            @Html.EditorFor(x => x.customer.address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.address)
+        </fieldset>
+
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.city)
+            @Html.EditorFor(x => x.customer.city, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.city)
+        </fieldset>
+
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.zipcode)
+            @Html.EditorFor(x => x.customer.zipcode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.zipcode)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.phone)
+            @Html.EditorFor(x => x.customer.phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.phone)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.customer.email)
+            @Html.EditorFor(x => x.customer.email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.customer.email)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.petName)
+            @Html.EditorFor(x => x.petName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.petName)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.speciesID)
+            @Html.DropDownListFor(x => x.speciesID, new SelectList(ViewBag.speciesList, "value", "text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.speciesID)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.startDate)
+            @Html.EditorFor(x => x.startDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.startDate)
+        </fieldset>
+        <fieldset class="form-group">
+            @Html.LabelFor(x => x.endDate)
+            @Html.EditorFor(x => x.endDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.endDate)
+        </fieldset>
+
+        <input type="submit" value="Complete" class="btn btn-primary pull-xs-right" />
+
+    }
+
+</section>
