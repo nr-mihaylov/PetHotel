@@ -13,6 +13,7 @@ Prices per. day are established at:
 - Guinea pig 75,00
 - Canary 60,00
 - Bird spider 90,00
+
 The web application must present Pet Paradise Hotel for customers and support online reservation. The
 reservation system must keep track of customers and their lodged animals. Upon collection of pets, it must
 be possible to print an invoice. Moreover, it should be possible on daily basis to generate a list with name,
